@@ -1,0 +1,19 @@
+#!/usr/bin/python3
+# _*_ coding:UTF-8 _*_
+# @filename: config/config.py
+
+REDIS_CONFIG = {
+    "host"            :"127.0.0.1",
+    "port"            :6379,
+    "db"              :0,
+    "password"        :"",
+    "max_connections" :40,
+    "socket_timeout"  :1,
+    "decode_responses":True
+}
+
+# 程序执行日志路径，建议使用绝对路径
+LOGFILE_PATH = '/Users/momo/Documents/工作文档/Workstation/Projects/PycharmProjects/inner_gitlab_search/log/'
+# LOGFILE_PATH = '/home/li.zhijie/githubmonitor/log/'
+
+from config.secrets import *
