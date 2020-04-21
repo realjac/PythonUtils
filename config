@@ -16,4 +16,8 @@ REDIS_CONFIG = {
 LOGFILE_PATH = '/Users/realjac/githubmonitor/log/'
 
 #导入某些线上配置，包括线上redis等
-from config.secrets import *
+from utils.logger import logger
+try:
+    from config.secrets import *
+except Exception as e:
+    logger.error(u'配置文件导入失败，{}'.format(e))
