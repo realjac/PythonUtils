@@ -13,7 +13,7 @@ REDIS_CONFIG = {
 }
 
 # 程序执行日志路径，建议使用绝对路径
-LOGFILE_PATH = '/Users/momo/Documents/工作文档/Workstation/Projects/PycharmProjects/inner_gitlab_search/log/'
-# LOGFILE_PATH = '/home/li.zhijie/githubmonitor/log/'
+LOGFILE_PATH = '/Users/realjac/githubmonitor/log/'
 
+#导入某些线上配置，包括线上redis等
 from config.secrets import *
