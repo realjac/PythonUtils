@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+# _*_ coding:UTF-8 _*_
 
 from datetime import datetime, timedelta, date, tzinfo
 
