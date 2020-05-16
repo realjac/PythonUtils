@@ -3,7 +3,7 @@ from datetime import datetime, timedelta, date, tzinfo
 
 
 # 获取10天前的日期
-def get_day_from_today(n=0):
+def get_date_from_today(n=0):
     '''
     距今的日期
     :param n:几天
@@ -14,7 +14,13 @@ def get_day_from_today(n=0):
         return date.today() - timedelta(days=n)
     else:
         return date.today() + timedelta(days=n)
-
+        
+def get_days_from_today(timestr,format='%d%b,%Y') 
+    '''
+    :return 距离今天有多少天
+    '''
+    timestr = ''.join(timestr.split())
+    return ((datetime.today() - datetime.strptime(timestr, format))).days
 
 def convert_ad_timestamp(timestamp):
     '''
