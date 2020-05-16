@@ -22,7 +22,7 @@ def get_days_from_today(timestr,format='%d%b,%Y')
     :return 距离今天有多少天
     '''
     timestr = ''.join(timestr.split())
-    return ((datetime.today() - datetime.strptime(timestr, format))).days
+    return (datetime.today() - datetime.strptime(timestr, format)).days
 
 def convert_ad_timestamp(timestamp):
     '''
