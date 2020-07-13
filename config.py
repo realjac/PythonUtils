@@ -12,8 +12,6 @@ REDIS_CONFIG = {
     "decode_responses":True
 }
 
-# 程序执行日志路径，建议使用绝对路径
-LOGFILE_PATH = '/Users/realjac/githubmonitor/log/'
 
 #导入某些线上配置，包括线上redis等
 try:
