@@ -2,7 +2,13 @@
 import datetime
 import logging.handlers
 import os
+import sys
 
+# 兼容python2
+if sys.version[0]=='2':
+  reload(sys)
+  sys.setdefaultencoding('utf-8')
+  
 # 配置：
 LOG_NAME = 'main'
 
@@ -20,5 +26,5 @@ handler.setLevel(logging.DEBUG)
 
 # 设置默认logger
 logger = logging.getLogger(LOG_NAME)
-logger.setLevel(logging.INFO)
 logger.addHandler(handler)
+logger.setLevel(logging.INFO)  #覆盖默认handler的Level
