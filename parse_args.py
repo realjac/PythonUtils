@@ -4,7 +4,10 @@ import getopt
 import os
 import sys
 
-
+"""建议直接使用argparse模块，节省时间！https://docs.python.org/zh-cn/3/library/argparse.html
+argparse 模块可以让人轻松编写用户友好的命令行接口。程序定义它需要的参数，
+然后 argparse 将弄清如何从 sys.argv 解析出那些参数。 
+argparse 模块还会自动生成帮助和使用手册，并在用户给程序传入无效参数时报出错误信息"""
 # 1.参数：api文件所在目录
 
 def parse_args():
