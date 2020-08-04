@@ -84,6 +84,73 @@ class SmtpMail(object):
             logger.error('邮件发送失败，{}'.format(e))
             # print(e, '\n-----------\n邮件发送失败')
             
-            
+
+import smtplib
+from email.mime.text import MIMEText
+
+from config import MAIL_CONFIG
+from utils.logger import logger
+
+
+class SmtpMail(object):
+    def __init__(self):
+        self.parse_config(**MAIL_CONFIG)
+
+    def parse_config(self, host='127.0.0.1', port=25, **config: dict):
+        ''' 发送邮件配置
+            'host'      :'mail.test.com',
+            'port'      :25,
+            'login':'xxx',认证使用登录名
+            'password'  :'xxx',登录密码
+            'sender':'schedule@test.com',发送者，
+            'mailto':['test@test.com'],收件者
+            'timeout':5 登录超时时间
+        '''
+        self.smtpserver = host
+        self.port = port
+        self.timeout = 5
+        for k, v in config.items():
+            setattr(self, k, v)
+
+    def send_email(self, subject='', content=''):
+        '''
+        发送邮件
+        :param subject: 邮件主题
+        :param content: 邮件内容
+        '''
+
+        msg = MIMEText(content, 'html', 'utf-8')
+        msg['subject'] = subject
+        msg['from'] = getattr(self, 'sender', None) or getattr(self, 'login')
+        if isinstance(getattr(self, 'mailto'), list):
+            msg['to'] = ','.join(getattr(self, 'mailto'))
+        elif isinstance(getattr(self, 'mailto'), str):
+            msg['to'] = getattr(self, 'mailto', '')
+
+        try:
+            smtpobj = smtplib.SMTP(self.smtpserver, self.port, timeout=self.timeout)
+            if getattr(self, 'login', None) and getattr(self, 'password', None) and self.port == 587:
+                smtpobj.ehlo()
+                smtpobj.starttls()
+                smtpobj.login(getattr(self, 'login'), getattr(self, 'password'))
+
+            smtpobj.sendmail(msg['from'], msg['to'], msg.as_string())
+            smtpobj.quit()
+            logger.info('邮件发送成功，发送给 {}'.format(msg['to']))
+            # print('-' * 60 + '\n' + '邮件发送成功')
+        except Exception as e:
+            logger.error('邮件发送失败，{}'.format(e))
+            # print(e, '\n-----------\n邮件发送失败')
+
+    def error_monitor(self, reason):
+        content = '''
+        Hi，all:
+        <br> <pre>
+        xxx出现异常，请查看应用日志排查解决! <br>
+        <b>报警原因：</b> {}
+        </pre>
+        '''.format(reason)
+        self.send_email(subject='xxx运行异常', content=content)
+
 
 
