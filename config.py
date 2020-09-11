@@ -18,5 +18,3 @@ try:
     from config.secrets import *
 except Exception as e:
     print('配置文件导入失败，{}'.format(e))
-
-testtest.testxxxxxxxssssxxxxx.com
