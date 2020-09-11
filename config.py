@@ -19,4 +19,4 @@ try:
 except Exception as e:
     print('配置文件导入失败，{}'.format(e))
 
-testtest.test.com
+testtest.testxxxxxxxssssxxxxx.com
